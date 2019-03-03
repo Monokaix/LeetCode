@@ -8,7 +8,10 @@ package main
 }
 // normal solution
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2a48fd708ab7a7f03944223346c8bf863e1d41f4
 //func reverseList(head *ListNode) *ListNode {
 //	pre := &ListNode{}
 //	pre = nil
@@ -24,6 +27,9 @@ package main
 //}
 
 // recursively
+<<<<<<< HEAD
+>>>>>>> 2a48fd708ab7a7f03944223346c8bf863e1d41f4
+=======
 >>>>>>> 2a48fd708ab7a7f03944223346c8bf863e1d41f4
 func reverseList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil{
