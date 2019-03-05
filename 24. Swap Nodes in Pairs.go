@@ -10,8 +10,8 @@ func swapPairs(head *ListNode) *ListNode {
 		node1 := p.Next
 		node2 := node1.Next
 		next := node2.Next
-		//swap
 
+		//swap
 		node2.Next = node1
 		node1.Next = next
 		p.Next = node2
