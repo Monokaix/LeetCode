@@ -8,7 +8,7 @@ func helper(root *TreeNode,pre int) int{
 		return 0
 	}
 	res := pre*10+root.Val
-	if root.Left == nil && root.Right == nil{
+	if root.Left == nil && root.Right == nil{ //leaf node,return directly
 		return res
 	}else{
 		return helper(root.Left,res)+helper(root.Right,res)
