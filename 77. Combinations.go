@@ -17,7 +17,7 @@ func combination(n int, k int, start int, cur []int, res *[][]int) {
 
 	for i := start; i <= n-(k-len(cur))+1; i++ {
 		cur = append(cur, i)
-		combination(n, k, i+1, cur, res)
+		combination(n, k, i+1, cur, res) //i+1,因为不能包括自身，对比problem39
 		cur = cur[:len(cur)-1]
 	}
 	return
