@@ -18,12 +18,6 @@ func combination6(nums []int, cur []int, res *[][]int, begin int) {
 	*res = append(*res, temp)
 	for i := begin; i < len(nums); i++ {
 		if i > begin && nums[i] == nums[i-1]{
-			//fmt.Println("i",i)
-			//fmt.Println("begin",begin)
-			//fmt.Println("nums[i]",nums[i])
-			//fmt.Println("nums[i-1]",nums[i-1])
-			//fmt.Println("cur",cur)
-			//fmt.Println("%%%%%%%%%%%")
 			continue
 		}
 		cur = append(cur, nums[i])
