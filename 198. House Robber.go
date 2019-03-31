@@ -49,6 +49,7 @@ func rob2(nums []int) int {
 	}
 	return memo[0]
 }
+
 //另外一种动态规划思路，从memo[0]开始
 //public int rob(int[] nums) {
 //	int n = nums.length;
