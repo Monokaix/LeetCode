@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //方法一：暴力循环，因为前两重循环是找所有子串，第三重循环判断回文
 //方法二：dp，其实思路和方法一一样，只不过判断回文的时候用dp记录了，所以复杂度收益O(n)，dp[i][j]
 //记录从i到j是否为回文，若dp[i+1][j-1]是回文，则str[i]=str[j]时dp[i][j]也是回文，利用这一特性求解
@@ -18,6 +16,7 @@ func longestPalindrome(s string) string {
 		dp = append(dp, tmp)
 	}
 	dp[n-1][n-1] = true
+	res := []byte{}
 	//逆序创建dp
 	for i := n - 2; i >= 0; i-- {
 		dp[i][i] = true
@@ -34,11 +33,10 @@ func longestPalindrome(s string) string {
 			}
 		}
 	}
+	//fmt.Println("start:",start)
+	//fmt.Println("maxlen:",maxLen)
 	for i := start; i < maxLen+start; i++ {
 		res = append(res, s[i])
 	}
-}
-func main() {
-	s := "aaaaaaaaaaaaaaaaaaaaaaaaa"
-	fmt.Println(longestPalindrome(s))
+	return string(res)
 }
