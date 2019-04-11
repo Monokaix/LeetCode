@@ -13,7 +13,7 @@ func sortColors(nums []int)  {
 			nums[i],nums[two] = nums[two],nums[i]
 		}else{
 			zero++
-			nums[zero],nums[i] = nums[i],nums[zero]
+			nums[zero],nums[i] = nums[i],nums[zero] //直接交换即可，因为nums[zero]一定是1
 			i++
 		}
 	}
