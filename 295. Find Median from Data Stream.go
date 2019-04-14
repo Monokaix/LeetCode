@@ -96,13 +96,13 @@ func (this *MedianFinder) AddNum(num int) {
 	//	}
 	//}
 
-	if this.left.Len() == this.right.Len() {
+	if this.left.Len() == this.right.Len() {//每次插入大顶堆，保证大顶堆元素始终大于等于小顶堆元素
 		heap.Push(this.left, num)
 	} else {
 		heap.Push(this.right, num)
 	}
 
-	if this.right.Len() > 0 && this.left.intHeap[0] > this.right.intHeap[0] {
+	if this.right.Len() > 0 && this.left.intHeap[0] > this.right.intHeap[0] { //这里用来保证大顶堆元素始终小于小顶堆
 		this.left.intHeap[0], this.right.intHeap[0] = this.right.intHeap[0], this.left.intHeap[0]
 		heap.Fix(this.left, 0)
 		heap.Fix(this.right, 0)
