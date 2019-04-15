@@ -1,38 +1,31 @@
 package main
 
+//典型的dfs,类似于数组中找路径,注意res要引用传递
 func pathSum(root *TreeNode, sum int) [][]int {
 	res := make([][]int, 0)
-
 	if root == nil {
 		return res
 	}
-	if root.Left == nil && root.Right == nil && root.Val-sum == 0 {
-		temp := []int{}
-		temp = append(temp, root.Val)
-		res = append(res, temp)
-		return res
-	}
-	leftRes := pathSum(root.Left, sum-root.Val)
-	for i := len(leftRes) - 1; i >= 0; i-- {
-		temp := make([]int, 1)
-		temp[0] = root.Val
-		for _, v := range leftRes[i] {
-			temp = append(temp, v)
-		}
-
-		leftRes[i] = temp
-		res = append(res, leftRes[i])
-	}
-	rightRes := pathSum(root.Right, sum-root.Val)
-	for i := len(rightRes) - 1; i >= 0; i-- {
-		temp := make([]int, 1)
-		temp[0] = root.Val
-		for _, v := range rightRes[i] {
-			temp = append(temp, v)
-		}
-
-		rightRes[i] = temp
-		res = append(res, rightRes[i])
-	}
+	list := make([]int, 0)
+	getAllPath(root, sum, list, &res)
 	return res
+}
+func getAllPath(root *TreeNode, sum int, list []int, res *[][]int) {
+	if root == nil { //说明递归没有找到解,直接返回
+		return
+	}
+	num := root.Val
+	list = append(list, num)
+	if root.Left == nil && root.Right == nil && sum == root.Val { //找到一个解,加入res
+		tmp := make([]int, len(list))
+		copy(tmp, list)
+		*res = append(*res, tmp)
+	} else { //没找到解继续递归
+		if root.Left != nil {
+			getAllPath(root.Left, sum-num, list, res)
+		}
+		if root.Right != nil {
+			getAllPath(root.Right, sum-num, list, res)
+		}
+	}
 }
