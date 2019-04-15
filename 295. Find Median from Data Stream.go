@@ -21,13 +21,10 @@ func (h intHeap) Swap(i, j int) { // 绑定swap方法，交换两个元素位置
 }
 
 func (h *intHeap) Pop() interface{} { // 绑定pop方法，从最后拿出一个元素并返回
-	//old := *h
-	//n := len(old)
-	//x := old[n-1]
-	//*h = old[0 : n-1]
 	old := *h
-	x := old[0]
-	*h = old[1:]
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
 	return x
 }
 func (h *intHeap) Push(x interface{}) { // 绑定push方法，插入新元素
@@ -66,36 +63,6 @@ func Constructor() MedianFinder {
 }
 
 func (this *MedianFinder) AddNum(num int) {
-	//if this.big.Len() == 0 {
-	//	heap.Push(this.big, num)
-	//	return
-	//}
-	//if this.small.Len() == this.big.Len() {
-	//	if num < this.big.intHeap[0] { // 当前元素大于大根堆放入大根堆
-	//		heap.Push(this.big, num)
-	//	} else {
-	//		heap.Push(this.small, num)
-	//	}
-	//} else if this.small.Len() < this.big.Len() {
-	//	if num > this.big.intHeap[0] {
-	//		heap.Push(this.small, num)
-	//	} else {
-	//		heap.Push(this.small, this.big.Pop())
-	//
-	//		heap.Push(this.big, num)
-	//		//heap.Fix(this.big,0)
-	//	}
-	//} else if this.small.Len() > this.big.Len() {
-	//	if num < this.small.intHeap[0] {
-	//		heap.Push(this.big, num)
-	//	} else {
-	//		heap.Push(this.big, this.small.Pop())
-	//
-	//		heap.Push(this.small, num)
-	//		//heap.Fix(this.small,0)
-	//	}
-	//}
-
 	if this.left.Len() == this.right.Len() {//每次插入大顶堆，保证大顶堆元素始终大于等于小顶堆元素
 		heap.Push(this.left, num)
 	} else {
