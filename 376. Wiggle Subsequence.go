@@ -21,3 +21,41 @@ func wiggleMaxLength(nums []int) int {
 	}
 	return down
 }
+
+//贪心
+func wiggleMaxLength2(nums []int) int {
+	n := len(nums)
+	if n < 2 {
+		return n
+	}
+	//定义三种状态
+	BEGIN := 0
+	UP := 1
+	DOWN := 2
+	STATE := BEGIN
+	cnt := 1
+	for i := 1; i < n; i++ {
+		switch  STATE{
+		case BEGIN:
+			if nums[i]>nums[i-1]{
+				cnt++
+				STATE = UP
+			}
+			if nums[i] < nums[i-1]{
+				cnt++
+				STATE = DOWN
+			}
+		case UP:
+			if nums[i] < nums[i-1]{ // 之前是up状态，现在遇到一个down序列，说明需要++
+				STATE = DOWN        // 若还是递增序列，则不用管他，即不做任何操作
+				cnt++
+			}
+		case DOWN :
+			if nums[i] > nums[i-1]{ // 之前是down状态，现在遇到一个up序列，说明需要++
+				STATE = UP
+				cnt++
+			}
+		}
+	}
+	return cnt
+}
