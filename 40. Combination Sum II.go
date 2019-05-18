@@ -23,7 +23,6 @@ func combination3(candidates []int, target int, cur []int, res *[][]int, begin i
 	} else if target < 0 {
 		return
 	}
-	//visited := make(map[int]bool, len(candidates))
 	for i := begin; i < len(candidates); i++ {
 		if i > begin && candidates[i] == candidates[i-1] {
 			continue
