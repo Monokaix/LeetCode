@@ -10,7 +10,7 @@ func solveNQueens(n int) [][]string {
 	dia2 := make([]bool, 2*n-1) //因为有2*n-1条对角线
 	row := []int{}
 	var putQueen func(int, int, []int)
-	putQueen = func(index int, n int, row []int) { //index代表当前处理的行，n是问题规模，row代表第
+	putQueen = func(index int, n int, row []int) { //index代表当前处理的行，n是问题规模，row代表一个解
 		if index == n { //找到一个解
 			res = append(res, generateBoard(n, row))
 		}
