@@ -1,7 +1,7 @@
 package main
 
-//动态规划，但是可以优化空间复杂度，只使用一个变量即可
-//一升一降，所以是up时，down+1，down时，up+1
+// 动态规划，但是可以优化空间复杂度，只使用一个变量即可
+// 一升一降，所以是up时，down+1，down时，up+1
 func wiggleMaxLength(nums []int) int {
 	n := len(nums)
 	if n < 2 {
