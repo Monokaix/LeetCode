@@ -10,26 +10,21 @@ func wordPattern(pattern string, str string) bool {
 		return false
 	}
 	m[pattern[0]] = s[0]
+	m2[s[0]] = true
 	for i := 1; i < len(pattern); i++ {
-		if _, ok := m[pattern[i]]; ok {
+		if _, ok := m[pattern[i]]; ok { //出现重复pattern字符时,看其映射是否正确
 			if m[pattern[i]] != s[i] {
-
 				return false
 			}
-		} else {
-			m2[s[i-1]] = true
-			if _, ok := m2[s[i]]; ok {
+		} else { //当patterns中出现一个新字符时,要看其对应位置的s串是否也出现过
+
+			if _, ok := m2[s[i]]; ok { //若已经出现,直接返回false
 				return false
-			} else {
+			} else { //若未出现,建立pattern到s的映射
 				m[pattern[i]] = s[i]
+				m2[s[i]] = true
 			}
-
 		}
-
 	}
 	return true
-}
-
-func main() {
-
 }
