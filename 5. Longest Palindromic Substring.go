@@ -16,27 +16,22 @@ func longestPalindrome(s string) string {
 		dp = append(dp, tmp)
 	}
 	dp[n-1][n-1] = true
-	res := []byte{}
 	//逆序创建dp
 	for i := n - 2; i >= 0; i-- {
 		dp[i][i] = true
 		for j := n - 1; j >= i; j-- {
-			if j == i+1 {
+			if j == i+1 { //当i、j相邻时,直接判断s[i]是否等于s[j]
 				dp[i][j] = s[j] == s[i] //因为若s[i]!=s[j]则i到j组不成回文 举例abba，a和a相等，判断bb相等，这时是回文
 			}
 			if j > i+1 { //根据dp[i+1][j-1]判断当前i到j是否为回文
 				dp[i][j] = dp[i+1][j-1] && s[i] == s[j]
 			}
+			//当i到j是回文时,这里开始更新最长记录
 			if j-i+1 > maxLen && dp[i][j] {
 				start = i
 				maxLen = j - i + 1
 			}
 		}
 	}
-	//fmt.Println("start:",start)
-	//fmt.Println("maxlen:",maxLen)
-	for i := start; i < maxLen+start; i++ {
-		res = append(res, s[i])
-	}
-	return string(res)
+	return s[start : maxLen+start]
 }
