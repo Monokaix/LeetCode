@@ -1,7 +1,7 @@
 package main
 
 import "container/list"
-
+//利用宽度搜索可以保证是最短的
 func ladderLength(beginWord string, endWord string, wordList []string) int {
 	l := list.New()
 	type info struct {
