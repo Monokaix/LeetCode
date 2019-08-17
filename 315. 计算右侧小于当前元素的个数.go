@@ -36,8 +36,8 @@ import "fmt"
 //			if arr[i][0] <= arr[j][0] { //谁小谁就放在temp数组最前面，直到两个数组其中一个遍历完，此时跳出循环
 //				temp[t][0] = arr[i][0]
 //				temp[t][1] = arr[i][1]
-//				(*count)[arr[i][1]] += j - mid - 1
-//				t++
+//				(*count)[arr[i][1]] += j - mid - 1 //这个j-mid-1就代表当前比arr[i][0]元素小的个数，因为下面的else就一直让j++，
+//				t++                                //因此j-mid-1就是统计的个数
 //				i++
 //			} else {
 //				temp[t][0] = arr[j][0]
