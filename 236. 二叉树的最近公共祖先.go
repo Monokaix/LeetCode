@@ -7,10 +7,10 @@ func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
 	res1 := []*TreeNode{}
 	res2 := []*TreeNode{}
 	finish := false
-	preorder(root, p, &path, &res1, &finish)
+	preorder(root, p, path, &res1, &finish)
 	path = []*TreeNode{}
 	finish = false
-	preorder(root, q, &path, &res2, &finish)
+	preorder(root, q, path, &res2, &finish)
 	length := 0
 	//找到最短的
 	if len(res1) < len(res2) {
@@ -31,16 +31,15 @@ func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
 //path 当前遍历的路径
 //res 找到后最终返回的路径
 //finish 标记，判断是否找到
-func preorder(root *TreeNode, node *TreeNode, path *[]*TreeNode, res *[]*TreeNode, finish *bool) {
+func preorder(root *TreeNode, node *TreeNode, path []*TreeNode, res *[]*TreeNode, finish *bool) {
 	if root == nil || *finish { //到达叶节点或者已经找到需要的node 这里是递归结束的条件
 		return
 	}
-	*path = append(*path, root)
+	path = append(path, root)
 	if root == node {
 		*finish = true
-		*res = append(*res, *path...)
+		*res = append(*res, path...)
 	}
 	preorder(root.Left, node, path, res, finish)
 	preorder(root.Right, node, path, res, finish)
-	*path = (*path)[:len(*path)-1] //弹出一个
 }

@@ -20,12 +20,9 @@ func getAllPath(root *TreeNode, sum int, list []int, res *[][]int) {
 		tmp := make([]int, len(list))
 		copy(tmp, list)
 		*res = append(*res, tmp)
-	} else { //没找到解继续递归
-		if root.Left != nil {
-			getAllPath(root.Left, sum-num, list, res)
-		}
-		if root.Right != nil {
-			getAllPath(root.Right, sum-num, list, res)
-		}
 	}
+	//没找到解继续递归
+	getAllPath(root.Left, sum-num, list, res)
+	getAllPath(root.Right, sum-num, list, res)
+	// list = list[:len(list)-1] 这里不需要回溯,因为append操作会产生一份新的拷贝,不影响当前list的值
 }
