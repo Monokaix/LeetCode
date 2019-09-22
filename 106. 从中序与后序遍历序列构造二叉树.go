@@ -1,14 +1,6 @@
 package main
 
 func buildTree2(inorder []int, postorder []int) *TreeNode {
-	//将中序对应的元素索引记录在map,方便直接在中序序列找到根
-	m := make(map[int]int)
-	for i := 0; i < len(inorder); i++ {
-		m[inorder[i]] = i
-	}
-	return help2(inorder, postorder, m)
-}
-func help2(inorder []int, postorder []int, m map[int]int) *TreeNode {
 	if len(inorder) == 0 {
 		return nil
 	}
@@ -16,8 +8,18 @@ func help2(inorder []int, postorder []int, m map[int]int) *TreeNode {
 	if len(inorder) == 1 { //中序剩余一个元素,直接建树
 		return root
 	}
-	index := m[postorder[len(postorder)-1]]
+	index := getIndex(postorder[len(postorder)-1], inorder)
 	root.Left = buildTree2(inorder[:index], postorder[:index]) //左子树,pre和in长度对应
 	root.Right = buildTree2(inorder[index+1:], postorder[index:len(postorder)-1])
 	return root
+}
+
+//从inOrder中找到每个根节点对应的索引
+func getIndex2(val int, nums []int) int {
+	for i, v := range nums {
+		if v == val {
+			return i
+		}
+	}
+	return 0
 }
