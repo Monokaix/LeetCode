@@ -7,17 +7,17 @@ func search(nums []int, target int) int {
 		mid := (begin + end) / 2
 		if nums[mid] == target {
 			return mid
-		} else if nums[mid] < nums[end] { //右侧有序
-			if target > nums[mid] && target <= nums[end] {
-				begin = mid + 1 //在有序区间范围内
-			} else {
-				end = mid - 1 //继续寻找一个有序的区间
-			}
-		} else { //左侧有序
+		} else if nums[begin] <= nums[mid] { //左侧有序
 			if target >= nums[begin] && target < nums[mid] { //在有序区间范围内
 				end = mid - 1
 			} else {
 				begin = mid + 1
+			}
+		} else { //右侧有序
+			if target > nums[mid] && target <= nums[end] {
+				begin = mid + 1 //在有序区间范围内
+			} else {
+				end = mid - 1 //继续寻找一个有序的区间
 			}
 		}
 	}
