@@ -4,15 +4,12 @@ package main
 //i指向的值和前一个值一样,则i继续滑动
 //遇到和前一个值不一样的时候,i覆盖掉j
 func removeDuplicates(nums []int) int {
-	num := len(nums)
 	j := 1
 	for i := 1; i < len(nums); i++ {
-		if nums[i] == nums[i-1] {
-			num-- //i指针继续往前移动
-		} else {
+		if nums[i] != nums[i-1] {
 			nums[j] = nums[i] //直接替换
 			j++               //同时j向前移动
 		}
 	}
-	return num
+	return j
 }
