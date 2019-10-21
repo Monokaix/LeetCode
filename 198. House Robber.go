@@ -29,35 +29,21 @@ func tryRob(nums []int, index int, memo []int) int {
 	return res
 }
 
-//方法二:动态规划
+//动态规划思路，从dp[0]开始
 func rob2(nums []int) int {
 	n := len(nums)
 	if n == 0 {
 		return 0
 	}
-	memo := make([]int, n)
-	memo[n-1] = nums[n-1] //体现动态规划自底向上的思想
-	for i := n - 2; i >= 0; i-- {
-		//记录memo[i]
-		for j := i; j < n; j++ {
-			if j+2 < n {
-				memo[i] = int(math.Max(float64(memo[i]), float64(nums[j]+memo[j+2])))
-			} else {
-				memo[i] = int(math.Max(float64(memo[i]), float64(nums[j])))
-			}
-		}
+	if n < 2 {
+		return nums[0]
 	}
-	return memo[0]
+	dp := make([]int, n) //dp[i]表示到第i个房子为止可以偷窃的最大值
+	dp[0] = nums[0]
+	dp[1] = int(math.Max(float64(nums[0]), float64(nums[1])))
+	for i := 2; i < n; i++ {
+		//dp[i-1]表示不偷第i个,nums[i]+dp[i-2]表示偷第i个
+		dp[i] = int(math.Max(float64(dp[i-1]), float64(nums[i]+dp[i-2])))
+	}
+	return dp[n-1]
 }
-
-//另外一种动态规划思路，从memo[0]开始
-//public int rob(int[] nums) {
-//	int n = nums.length;
-//	if (n <= 1) return n == 0 ? 0: nums[0];
-//	int[] memo = new int[n];
-//	memo[0] = nums[0];
-//	memo[1] = Math.max(nums[0], nums[1]);
-//	for (int i = 2; i < n; i++)
-//	memo[i] = Math.max(memo[i - 1], nums[i] + memo[i - 2]); //偷或者不偷
-//	return memo[n - 1];
-//}
