@@ -1,30 +1,31 @@
 package main
 
 func reverseKGroup(head *ListNode, k int) *ListNode {
-	root := &ListNode{}
-	root.Next = head
-	dummyHead := root
-	temp := head
+	dummyHead := &ListNode{}
+	dummyHead.Next = head
+	pre := dummyHead
+	cur := head
+	next := &ListNode{}
 
 	len := 0
-	for temp != nil{
+	for head != nil {
 		len++
-		temp = temp.Next
+		head = head.Next
 	}
-
-	for len >= k{
+	head = dummyHead.Next
+	//1->2->3 先反转成2->1->3 载反转成3->2-1,此时相当于2-1是一个整体
+	for i := 0; i < len/k; i++ {
 		// 一组k循环
-		for i := 0 ;i< k-1;i++{
-			temp = root.Next
-			root.Next = head.Next
-			head.Next = root.Next.Next
-			root.Next.Next = temp
+		for j := 0; j < k-1; j++ {
+			next = cur.Next
+			cur.Next = next.Next
+
+			next.Next = pre.Next
+			pre.Next = next
 		}
 		// 更新进行下一组次反转
-		root = head
-		head = head.Next
-		len -= k
+		pre = cur
+		cur = cur.Next
 	}
 	return dummyHead.Next
-
 }
