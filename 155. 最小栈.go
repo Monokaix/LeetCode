@@ -59,8 +59,7 @@ package main
 // pop和top的时候拿到栈顶元素再加上上一个最小值即可
 type MinStack struct {
 	data []int
-	// 最小值栈存的是最小值在栈中的索引值，避免重复存最小值
-	min int
+	min  int
 }
 
 func Constructor2() MinStack {
