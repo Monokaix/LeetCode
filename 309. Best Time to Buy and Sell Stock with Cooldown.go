@@ -18,11 +18,12 @@ func maxProfit2(prices []int) int {
 		dp1[i] = Max(dp1[i-1], dp2[i-1]+prices[i]) //当天未持有股票：昨天也未持有股票，或者昨天持有，今天卖出
 		tmp := 0
 		if i >= 2 {
+			// 这里体现冷冻期，因为是i-2
 			tmp = dp1[i-2]
 		}
 		dp2[i] = Max(dp2[i-1], tmp-prices[i])
 	}
-	return Max(dp1[n-1], dp2[n-1])
+	return dp1[n-1]
 }
 
 func Max(x, y int) int {
