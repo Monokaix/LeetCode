@@ -11,7 +11,7 @@ type TimeMap struct {
 }
 
 /** Initialize your data structure here. */
-func Constructor() TimeMap {
+func Constructor4() TimeMap {
 	return TimeMap{
 		key2TimeStamp:   make(map[string][]int),
 		timeStamp2Value: make(map[string]string),
@@ -42,7 +42,6 @@ func (this *TimeMap) Get(key string, timestamp int) string {
 		return this.timeStamp2Value[key+strconv.Itoa(timestamp)]
 	}
 	return ""
-	sort.Search()
 }
 
 /**
