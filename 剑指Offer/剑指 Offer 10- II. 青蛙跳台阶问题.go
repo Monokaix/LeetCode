@@ -2,11 +2,11 @@ package main
 
 import "fmt"
 
-func fib(n int) int {
+func numWays(n int) int {
 	if n < 2 {
-		return n
+		return 1
 	}
-	fib1 := 0
+	fib1 := 1
 	fib2 := 1
 	fibN := 0
 	for i := 2; i <= n; i++ {
@@ -18,5 +18,5 @@ func fib(n int) int {
 }
 
 func main() {
-	fmt.Println(fib(7))
+	fmt.Println(numWays(1))
 }
