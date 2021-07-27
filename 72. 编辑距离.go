@@ -33,6 +33,7 @@ func minDistance(word1 string, word2 string) int {
 	}
 	return cost[m][n]
 }
+
 func min(a int, b int) int {
 	if a < b {
 		return a
