@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -24,7 +23,6 @@ func findUnsortedSubarray(nums []int) int {
 			min = nums[i]
 		}
 	}
-	fmt.Println(l, r)
 
 	if l == r {
 		return 0
