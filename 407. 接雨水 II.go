@@ -67,8 +67,8 @@ func trapRainWater(heightMap [][]int) int {
 		mark[row-1][j] = 1
 	}
 	//扩展的方向数组
-	dx := []int{-1, 1, 0, 0};
-	dy := []int{0, 0, 1, -1};
+	dx := []int{-1, 1, 0, 0}
+	dy := []int{0, 0, 1, -1}
 	res := 0
 	for pq.Len() > 0 {
 		x := pq[0].x
